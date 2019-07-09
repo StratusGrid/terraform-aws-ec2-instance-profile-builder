@@ -15,3 +15,20 @@ module "ec2_default_instance_profile" {
   )}"
 }
 ```
+
+Create a role with custom permissions in addition to ssm and cloudwatch agent permissions:
+```
+module "ec2_default_instance_profile" {
+  source                 = "StratusGrid/ec2-instance-profile-builder/aws"
+  version                = "1.0.0"
+  # source                 = "github.com/StratusGrid/terraform-aws-ec2-instance-profile-builder"
+  instance_profile_name  = "${var.name_prefix}-default-ec2-instance-profile${local.name_suffix}"
+  add_custom_policy_json = true
+  custom_policy_json     = "${data.aws_iam_policy_document.my_custom_instance_policy.json}"
+  input_tags             = "${merge(local.common_tags,
+    map(
+    )
+  )}"
+}
+```
+  
