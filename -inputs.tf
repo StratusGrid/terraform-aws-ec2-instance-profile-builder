@@ -1,16 +1,11 @@
 ### Commented out name_prefix and name_suffix since there can only be one config stream and you don't see the name anywhere
 ### When you have names and the name changes, it requires manual intervention.
 
-variable "name_prefix" {
-  description = "String to prefix on object names"
+variable "instance_profile_name" {
+  description = "Unique string name of instance profile to be created. Also prepends supporting resource names"
   type = "string"
 }
 
-variable "name_suffix" {
-  description = "String to append to object names. This is optional, so start with dash if using"
-  type = "string"
-  default = ""
-}
 
 variable "input_tags" {
   description = "Map of tags to apply to resources"
@@ -21,25 +16,26 @@ variable "input_tags" {
   }
 }
 
-# variable "include_global_resource_rules" {
-#   description = "True/False to add global resource rules to Config. Default is false"
-#   type = "string"
-#   default = false
-# }
+variable "ssm_policy" {
+  description = "True/False to add ssm policy permissions to the IAM Role for the Instance Profile"
+  type = "string"
+  default = true
+}
 
-# variable "required_tags_enabled" {
-#   description = "True/False to add RequiredTags to Config. Default is false"
-#   type = "string"
-#   default = false
-# }
+variable "cloudwatch_agent_policy" {
+  description = "True/False to add cloudwatch agent policy permissions to the IAM Role for the Instance Profile"
+  type = "string"
+  default = true
+}
 
-# variable "required_tags" {
-#   description = "Map of tag keys, and optionally values, that are required."
-#   type = "map"
-#   default = {}
-# }
+variable "add_custom_policy_json" {
+  description = "True/False to add create a profile using a custom policy json (specified in another variable)"
+  type = "string"
+  default = false
+}
 
-# variable "source_recorder" {
-#   description = "The AWS Config Recorder for this region. This is used to set the correct application order/dependency chain."
-#   type = "string"
-# }
+variable "custom_policy_json" {
+  description = "JSON string of custom policy to be given ec2 instance profile."
+  type        = "string"
+  default     = ""
+}
