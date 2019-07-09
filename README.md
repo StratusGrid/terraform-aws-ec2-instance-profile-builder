@@ -1,4 +1,4 @@
-#ec2-instance-profile
+# ec2-instance-profile-builder
 ec2-instance-profile helps create an instance profile with or without a custom policy(ies). It can add cloudwatch agent rights to IAM as well as ssm, and is often used solely to make a default iam instance profile which gives the privileges needed for cloudwatch agent and ssm to work.
 
 ### Example Usage:
