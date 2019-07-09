@@ -33,6 +33,6 @@ EOF
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
   name = "${var.instance_profile_name}"
-  role = "${aws_iam_role.role.name}"
+  role = "${aws_iam_role.ec2_instance_profile.name}"
 }
 

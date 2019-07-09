@@ -81,6 +81,6 @@ resource "aws_iam_policy" "ssm" {
 
 resource "aws_iam_role_policy_attachment" "ssm" {
   count      = "${var.ssm_policy}"
-  role       = "${aws_iam_role.role.ec2_instance_profile}"
+  role       = "${aws_iam_role.ec2_instance_profile.name}"
   policy_arn = "${aws_iam_policy.ssm.arn}"
 }
