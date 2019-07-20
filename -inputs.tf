@@ -28,14 +28,8 @@ variable "cloudwatch_agent_policy" {
   default = true
 }
 
-variable "add_custom_policy_json" {
-  description = "True/False to add create a profile using a custom policy json (specified in another variable)"
-  type = "string"
-  default = false
-}
-
-variable "custom_policy_json" {
-  description = "JSON string of custom policy to be given ec2 instance profile."
-  type        = "string"
-  default     = ""
+variable "custom_policy_jsons" {
+  description = "List of JSON strings of custom policies to be attached to the ec2 instance profile iam role"
+  type        = "list"
+  default     = []
 }

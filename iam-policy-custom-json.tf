@@ -1,12 +1,12 @@
 resource "aws_iam_policy" "custom" {
-  count  = "${var.add_custom_policy_json}"
-  name   = "${var.instance_profile_name}-custom-policy"
+  count  = "${length(var.custom_policy_jsons)}"
+  name   = "${var.instance_profile_name}-custom-policy-${count.index}"
   path   = "/"
-  policy = "${var.custom_policy_json}"
+  policy = "${element(var.custom_policy_jsons, count.index)}"
 }
 
 resource "aws_iam_role_policy_attachment" "custom" {
-  count      = "${var.add_custom_policy_json}"
+  count      = "${length(var.custom_policy_jsons)}"
   role       = "${aws_iam_role.ec2_instance_profile.name}"
-  policy_arn = "${aws_iam_policy.custom.arn}"
+  policy_arn = "${element(aws_iam_policy.custom.*.arn, count.index)}"
 }
