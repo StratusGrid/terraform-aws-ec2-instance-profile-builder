@@ -15,11 +15,13 @@ resource "aws_iam_role" "ec2_instance_profile" {
   ]
 }
 EOF
-  tags = "${var.input_tags}"
+
+
+  tags = var.input_tags
 }
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
-  name = "${var.instance_profile_name}"
-  role = "${aws_iam_role.ec2_instance_profile.name}"
+  name = var.instance_profile_name
+  role = aws_iam_role.ec2_instance_profile.name
 }
 

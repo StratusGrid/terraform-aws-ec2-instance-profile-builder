@@ -17,7 +17,7 @@ data "aws_iam_policy_document" "ssm" {
       "ssm:PutConfigurePackageResult",
       "ssm:UpdateAssociationStatus",
       "ssm:UpdateInstanceAssociationStatus",
-      "ssm:UpdateInstanceInformation"
+      "ssm:UpdateInstanceInformation",
     ]
 
     resources = [
@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "ssm" {
       "ssmmessages:CreateControlChannel",
       "ssmmessages:CreateDataChannel",
       "ssmmessages:OpenControlChannel",
-      "ssmmessages:OpenDataChannel"
+      "ssmmessages:OpenDataChannel",
     ]
 
     resources = [
@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "ssm" {
       "ec2messages:FailMessage",
       "ec2messages:GetEndpoint",
       "ec2messages:GetMessages",
-      "ec2messages:SendReply"
+      "ec2messages:SendReply",
     ]
 
     resources = [
@@ -71,16 +71,16 @@ data "aws_iam_policy_document" "ssm" {
   # }
 }
 
-
 resource "aws_iam_policy" "ssm" {
-  count  = "${var.ssm_policy}"
+  count  = var.ssm_policy
   name   = "${var.instance_profile_name}-ssm-policy"
   path   = "/"
-  policy = "${data.aws_iam_policy_document.ssm.json}"
+  policy = data.aws_iam_policy_document.ssm.json
 }
 
 resource "aws_iam_role_policy_attachment" "ssm" {
-  count      = "${var.ssm_policy}"
-  role       = "${aws_iam_role.ec2_instance_profile.name}"
-  policy_arn = "${aws_iam_policy.ssm.arn}"
+  count      = var.ssm_policy
+  role       = aws_iam_role.ec2_instance_profile.name
+  policy_arn = aws_iam_policy.ssm[0].arn
 }
+

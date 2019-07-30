@@ -3,13 +3,12 @@
 
 variable "instance_profile_name" {
   description = "Unique string name of instance profile to be created. Also prepends supporting resource names"
-  type = "string"
+  type        = string
 }
-
 
 variable "input_tags" {
   description = "Map of tags to apply to resources"
-  type = "map"
+  type        = map(string)
   default = {
     Developer   = "StratusGrid"
     Provisioner = "Terraform"
@@ -18,18 +17,19 @@ variable "input_tags" {
 
 variable "ssm_policy" {
   description = "True/False to add ssm policy permissions to the IAM Role for the Instance Profile"
-  type = "string"
-  default = true
+  type        = string
+  default     = true
 }
 
 variable "cloudwatch_agent_policy" {
   description = "True/False to add cloudwatch agent policy permissions to the IAM Role for the Instance Profile"
-  type = "string"
-  default = true
+  type        = string
+  default     = true
 }
 
 variable "custom_policy_jsons" {
   description = "List of JSON strings of custom policies to be attached to the ec2 instance profile iam role"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
+

@@ -9,7 +9,7 @@ data "aws_iam_policy_document" "cloudwatch_agent" {
       "logs:DescribeLogStreams",
       "logs:DescribeLogGroups",
       "logs:CreateLogStream",
-      "logs:CreateLogGroup"
+      "logs:CreateLogGroup",
     ]
 
     resources = [
@@ -20,7 +20,7 @@ data "aws_iam_policy_document" "cloudwatch_agent" {
     sid = "CloudWatchAgentServerParametersPolicy"
 
     actions = [
-      "ssm:GetParameter"
+      "ssm:GetParameter",
     ]
 
     resources = [
@@ -30,14 +30,15 @@ data "aws_iam_policy_document" "cloudwatch_agent" {
 }
 
 resource "aws_iam_policy" "cloudwatch_agent" {
-  count  = "${var.cloudwatch_agent_policy}"
+  count  = var.cloudwatch_agent_policy
   name   = "${var.instance_profile_name}-cloudwatch-agent-policy"
   path   = "/"
-  policy = "${data.aws_iam_policy_document.cloudwatch_agent.json}"
+  policy = data.aws_iam_policy_document.cloudwatch_agent.json
 }
 
 resource "aws_iam_role_policy_attachment" "cloudwatch_agent" {
-  count      = "${var.cloudwatch_agent_policy}"
-  role       = "${aws_iam_role.ec2_instance_profile.name}"
-  policy_arn = "${aws_iam_policy.cloudwatch_agent.arn}"
+  count      = var.cloudwatch_agent_policy
+  role       = aws_iam_role.ec2_instance_profile.name
+  policy_arn = aws_iam_policy.cloudwatch_agent[0].arn
 }
+
