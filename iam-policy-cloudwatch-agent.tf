@@ -30,14 +30,14 @@ data "aws_iam_policy_document" "cloudwatch_agent" {
 }
 
 resource "aws_iam_policy" "cloudwatch_agent" {
-  count  = var.cloudwatch_agent_policy
+  count  = var.cloudwatch_agent_policy ? 1 : 0
   name   = "${var.instance_profile_name}-cloudwatch-agent-policy"
   path   = "/"
   policy = data.aws_iam_policy_document.cloudwatch_agent.json
 }
 
 resource "aws_iam_role_policy_attachment" "cloudwatch_agent" {
-  count      = var.cloudwatch_agent_policy
+  count      = var.cloudwatch_agent_policy ? 1 : 0
   role       = aws_iam_role.ec2_instance_profile.name
   policy_arn = aws_iam_policy.cloudwatch_agent[0].arn
 }
