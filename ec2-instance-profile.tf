@@ -16,7 +16,7 @@ resource "aws_iam_role" "ec2_instance_profile" {
 }
 EOF
 
-
+  permissions_boundary = var.permissions_boundary
   tags = var.input_tags
 }
 
