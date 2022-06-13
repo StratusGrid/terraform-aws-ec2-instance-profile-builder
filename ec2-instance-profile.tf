@@ -20,7 +20,7 @@ EOF
   tags = var.input_tags
 }
 
-resource "aws_iam_instance_profile" "ec2_instance_profile" {
+resource "aws_iam_instance_profile" "linux_instance_profile" {
   name = var.instance_profile_name
   role = aws_iam_role.ec2_instance_profile.name
 }
