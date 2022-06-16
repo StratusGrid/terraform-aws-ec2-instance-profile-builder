@@ -1,0 +1,7 @@
+module "template_terraform_module_starter" {
+  source  = "StratusGrid/template-terraform-module-starter/aws"
+  version = "1.0.0"
+  # source   = "github.com/StratusGrid/terraform-aws-template-terraform-module-starter"
+  name       = "${var.name_prefix}-template-terraform-module-starter${local.name_suffix}"
+  input_tags = merge(local.common_tags, {})
+}
