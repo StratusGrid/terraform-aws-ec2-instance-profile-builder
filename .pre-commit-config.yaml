@@ -30,10 +30,10 @@ repos:
           #- '--args=--only=terraform_required_version' # This is bugged with the new Terraform provider syntax
           - "--args=--only=terraform_required_providers"
           - "--args=--only=terraform_workspace_remote"
-      - id: terraform_tfsec
-        args:
-          - "--args=--exclude-downloaded-modules"
-          - "--args=--concise-output"
+      # - id: terraform_tfsec
+      #   args:
+      #     - "--args=--exclude-downloaded-modules"
+      #     - "--args=--concise-output"
   # Native Git PreCommit Hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
