@@ -47,7 +47,7 @@ resource "aws_iam_role" "vss_instance_profile" {
 }
 EOF
 
-  tags = var.input_tags
+  tags = local.tags
 }
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
