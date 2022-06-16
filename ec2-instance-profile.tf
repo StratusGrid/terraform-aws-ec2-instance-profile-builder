@@ -52,5 +52,5 @@ EOF
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
   name = "${var.instance_operating_system}-${var.instance_profile_name}"
-  role = var.instance_operating_system == "linux" ? aws_iam_role.ec2_instance_profile.name : aws_iam_role.vss_instance_profile.name
+  role = var.instance_operating_system == "windows" ? aws_iam_role.vss_instance_profile.name : aws_iam_role.ec2_instance_profile.name
 }
