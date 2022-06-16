@@ -1,7 +1,7 @@
-variable "name" {
+/* variable "name" {
   description = "name to prepend to all resource names within module"
   type        = string
-}
+} */
 
 ### Commented out name_prefix and name_suffix since there can only be one config stream and you don't see the name anywhere
 ### When you have names and the name changes, it requires manual intervention.
@@ -43,6 +43,6 @@ variable "instance_operating_system" {
   type        = string
   validation {
     condition     = contains(["linux", "windows"], var.instance_operating_system)
-    error_message = "Please enter the correct instance operating system type"
+    error_message = "Please enter the correct instance operating system type."
   }
 }
