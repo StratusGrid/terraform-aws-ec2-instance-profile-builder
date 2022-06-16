@@ -42,7 +42,7 @@ variable "instance_operating_system" {
   description = "EC2 Instance Operating System Type"
   type        = string
   validation {
-    condition     = contains(["linux", "windows"], var.instance_operating_system)
+    condition     = contains(["Linux", "Windows"], var.instance_operating_system)
     error_message = "Please enter the correct instance operating system type."
   }
 }
