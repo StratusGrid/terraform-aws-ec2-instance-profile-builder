@@ -1,3 +1,4 @@
+#tfsec:ignore:aws-iam-no-policy-wildcards -- Ignores warning on wildcarded resources
 data "aws_iam_policy_document" "ssm" {
   statement {
     sid = "ssm"
@@ -83,4 +84,3 @@ resource "aws_iam_role_policy_attachment" "ssm" {
   role       = aws_iam_role.ec2_instance_profile.name
   policy_arn = aws_iam_policy.ssm[0].arn
 }
-
