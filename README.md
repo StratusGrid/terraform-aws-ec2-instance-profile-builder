@@ -59,6 +59,7 @@ module "ec2_default_instance_profile" {
 
 | Name | Description |
 |------|-------------|
+| <a name="output_instance_profile_arn"></a> [instance\_profile\_arn](#output\_instance\_profile\_arn) | ARN of Instance Profile used to reference the created objects in IAM policies |
 | <a name="output_instance_profile_id"></a> [instance\_profile\_id](#output\_instance\_profile\_id) | ID of Instance Profile used to reference the created objects in aws\_instance resources |
 
 ---
