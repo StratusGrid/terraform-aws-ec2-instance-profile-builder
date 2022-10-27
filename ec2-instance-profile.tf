@@ -17,7 +17,7 @@ resource "aws_iam_role" "ec2_instance_profile" {
 EOF
 
 
-  tags = var.input_tags
+  tags = local.common_tags
 }
 
 resource "aws_iam_instance_profile" "ec2_instance_profile" {
