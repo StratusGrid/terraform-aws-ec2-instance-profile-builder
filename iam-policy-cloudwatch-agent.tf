@@ -1,3 +1,4 @@
+#tfsec:ignore:aws-iam-no-policy-wildcards -- Ignores warning on wildcarded resources
 data "aws_iam_policy_document" "cloudwatch_agent" {
   statement {
     sid = "CloudWatchAgentServerPolicy"
@@ -41,4 +42,3 @@ resource "aws_iam_role_policy_attachment" "cloudwatch_agent" {
   role       = aws_iam_role.ec2_instance_profile.name
   policy_arn = aws_iam_policy.cloudwatch_agent[0].arn
 }
-

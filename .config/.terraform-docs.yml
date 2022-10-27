@@ -1,0 +1,50 @@
+version: ""
+
+formatter: markdown table
+
+name: terraform-aws-ec2-instance-profile-builder
+
+content: |-
+  # terraform-aws-ec2-instance-profile-builder
+
+  GitHub: [StratusGrid/terraform-aws-ec2-instance-profile-builder](https://github.com/StratusGrid/terraform-aws-ec2-instance-profile-builder)
+
+  This module helps create an instance profile with or without a custom policy(ies). It can add cloudwatch agent rights to IAM as well as ssm, and is often used solely to make a default iam instance profile which gives the privileges needed for cloudwatch agent and ssm to work.
+  
+  ## Example Usage:
+  Create a default role with permissions for ssm and cloudwatch agent:
+  ```hcl
+  {{ include "examples/default-role-ssm-and-cloudwatch/example1.tfnot" }}
+  ```
+  ---
+  Create a role with custom permissions in addition to ssm and cloudwatch agent permissions:
+  ```hcl
+  {{ include "examples/custom-role-plus-ssm-and-cloudwatch/example1.tfnot" }}
+  ```
+  ---
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  ---
+
+  <span style="color:red">Note:</span> Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
+
+sections:
+  show:
+    - resources
+    - inputs
+    - outputs
+    - providers
+    - requirements
+
+sort:
+  enabled: true
+  by: name
+
+output:
+  file: README.md
+  mode: replace
