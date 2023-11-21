@@ -8,6 +8,6 @@ resource "aws_iam_policy" "custom" {
 resource "aws_iam_role_policy_attachment" "custom" {
   count      = length(var.custom_policy_jsons)
   role       = aws_iam_role.ec2_instance_profile.name
-  policy_arn = element(aws_iam_policy.custom.*.arn, count.index)
+  policy_arn = element(aws_iam_policy.custom[*].arn, count.index)
 }
 
